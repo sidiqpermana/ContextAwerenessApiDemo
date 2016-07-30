@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ContextAwerenessApiDemo</string>
+    <string name="google_api_key">AIzaSyAb3nkKOWyvXSgCHpJU_QCd64u4sPydMd4</string>
+    <string name="ask_location">This app needs connect to location service.</string>
+    <string name="setting">Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>
