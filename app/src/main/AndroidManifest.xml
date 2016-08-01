@@ -32,7 +32,11 @@
             android:value="@string/google_api_key" />
 
         <activity android:name=".SnapshotApiActivity" />
-        <activity android:name=".FenceApiActivity"></activity>
+        <activity android:name=".FenceApiActivity" />
+        <receiver android:name=".FenceReceiver"/>
+        <service
+            android:name=".FenceApiService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

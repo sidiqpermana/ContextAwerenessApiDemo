@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity
                 break;
 
             case 1:
+                FenceApiActivity.start(this);
                 break;
         }
     }
