@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.awareness.Awareness;
 import com.google.android.gms.awareness.fence.AwarenessFence;
@@ -27,6 +28,9 @@ public class FenceApiActivity extends BaseActivity {
     private FenceReceiver mFenceReceiver;
     private Intent mIntent = null;
     private PendingIntent mPendingIntent;
+
+    private int FENCE_REQ_CODE = 123;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +39,7 @@ public class FenceApiActivity extends BaseActivity {
         mFenceReceiver = new FenceReceiver();
         mIntent = new Intent(FENCE_RECEIVER_ACTION);
 
-        mPendingIntent = PendingIntent.getBroadcast(this, 123, mIntent, 0);
+        mPendingIntent = PendingIntent.getBroadcast(this, FENCE_REQ_CODE, mIntent, 0);
     }
 
     private void unregisterStartDrivingFence() {
@@ -81,6 +85,8 @@ public class FenceApiActivity extends BaseActivity {
         registerReceiver(mFenceReceiver, new IntentFilter(FENCE_RECEIVER_ACTION));
     }
 
+    /**
+     * Uncomment if you wanna unregister the fences and receivers
     @Override
     protected void onStop() {
         super.onStop();
@@ -88,6 +94,7 @@ public class FenceApiActivity extends BaseActivity {
         unregisterDuringDrivingFence();
         unregisterReceiver(mFenceReceiver);
     }
+    **/
 
     private void setFenceConfig(){
         AwarenessFence startDriving = DetectedActivityFence.starting(DetectedActivityFence.IN_VEHICLE);
@@ -104,6 +111,7 @@ public class FenceApiActivity extends BaseActivity {
             @Override
             public void onSuccess(@NonNull Status status) {
                 Log.d("FenceApiUpdate", "Success to set the fence condition");
+                Toast.makeText(FenceApiActivity.this, "Success to set the fence condition", Toast.LENGTH_LONG).show();
             }
 
             @Override
